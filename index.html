@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Key of Today</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        button {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #1e90ff;
+            padding: 14px 26px;
+            font-size: 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: rgba(30,144,255,0.15);
+        }
+
+        .key {
+            margin-top: 20px;
+            font-size: 20px;
+            user-select: all;
+        }
+
+        .hint {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body>
+
+<div class="container">
+    <button onclick="showKey()">Generate Key</button>
+
+    <div class="key" id="keyText"></div>
+    <div class="hint">Click the key to copy</div>
+</div>
+
+<script>
+    const keys = [
+        "FREE_581204","FREE_991040","FREE_480392","FREE_549128","FREE_103995","FREE_447812",
+        "FREE_662031","FREE_799204","FREE_932152","FREE_251908","FREE_710249","FREE_648301",
+        "FREE_110548","FREE_923004","FREE_888420","FREE_736194","FREE_335802","FREE_529340",
+        "FREE_008429","FREE_974015","FREE_441802","FREE_557002","FREE_900381","FREE_449220",
+        "FREE_771244","FREE_402998","FREE_199480","FREE_514800","FREE_820304","FREE_605994",
+        "FREE_732814","FREE_823120","FREE_550481","FREE_200855","FREE_594392","FREE_284009",
+        "FREE_655011","FREE_902814","FREE_771901","FREE_512904","FREE_399124","FREE_258640",
+        "FREE_004821","FREE_889450","FREE_228117","FREE_096542","FREE_446758","FREE_710924",
+        "FREE_532004","FREE_239915","FREE_581002","FREE_104880","FREE_777248","FREE_118304",
+        "FREE_488221","FREE_690542","FREE_883001","FREE_724510","FREE_540201","FREE_990205",
+        "FREE_821009","FREE_602288","FREE_557194","FREE_109440","FREE_991884","FREE_443001",
+        "FREE_118200","FREE_663900","FREE_014590","FREE_551290","FREE_982105","FREE_321007",
+        "FREE_420785","FREE_990004","FREE_410028","FREE_229900","FREE_004581","FREE_740318",
+        "FREE_420100","FREE_100003","FREE_888291","FREE_611220","FREE_202582","FREE_258111",
+        "FREE_440984","FREE_890221","FREE_503110","FREE_557711","FREE_004990","FREE_338882",
+        "FREE_290310","FREE_010058","FREE_509402","FREE_884002","FREE_720944","FREE_300584",
+        "FREE_119900","FREE_989044","FREE_660208","FREE_010524","FREE_701129","FREE_448812"
+    ];
+
+    function keyOfToday() {
+        const now = new Date(Date.now() - 3 * 60 * 60 * 1000);
+        const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+        const index = seed % keys.length;
+        return keys[index];
+    }
+
+    function showKey() {
+        const key = keyOfToday();
+        const el = document.getElementById("keyText");
+        el.textContent = key;
+
+        el.onclick = () => {
+            navigator.clipboard.writeText(key);
+        };
+    }
+</script>
+
+</body>
+</html>
